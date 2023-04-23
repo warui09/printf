@@ -1,30 +1,37 @@
 #include "main.h"
 #include <stdarg.h>
-#include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 /**
- *_printf - produces output based on format
- *@format: string that specifies the format of the input
- *
- *Return: int
+ *_printf - produce output according to format
+ *@format: string to print
+ *Return: number of characters printed excluding the null
+ *        bytes used to end strings
  */
 
 int _printf(const char *format, ...)
 {
-	int i;
-	va_list ap;
+/*	va_list ap;*/
+/*	char *a;*/
+	int i, j;
 
-	va_start(ap, format);
-	i = 1;
-	
-	if (format)
+	i = 0;
+	j = 0;
+
+	while (format[i] != '\0')
 	{
-		while (format[i])
+		if (format[i] == '%')
 		{
-			if (format[i - 1] == '%')
-			{
-				switch(format[i])
-				{
-					case 'd':
-						itoa(va_arg(ap, int))
+			write(1, &format[i + 1], 1);
+			j++;
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			j++;
+		}
+		i++;
+	}
+	return (j);
+}
