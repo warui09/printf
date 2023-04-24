@@ -14,7 +14,7 @@ int _strlen(char *s)
 	int i;
 
 	i = 0;
-	while (*s == '\0')
+	while (*s != '\0')
 	{
 		i++;
 		s++;
@@ -32,7 +32,7 @@ int _strlen(char *s)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	char a[20];
+	char a[1];
 	int i, j;
 	char *b;
 
@@ -42,7 +42,12 @@ int _printf(const char *format, ...)
 
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
+		{
+			write(1, &format[i], 1);
+			j++;
+		}
+		else
 		{
 			i++;
 			switch (format[i])
@@ -62,18 +67,12 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					write(1, &format[i - 1], 1);
-					j += 2;
+					j++;
 					break;
 			}
-			write(1, &format[i], 1);
-			j++;
-		}
-		else
-		{
-			write(1, &format[i], 1);
-			j++;
 		}
 		i++;
 	}
+	va_end(ap);
 	return (j);
 }
