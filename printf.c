@@ -9,7 +9,7 @@
  *
  *Return: length of the string
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int i;
 
@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 	j = 0;
 	va_start(ap, format);
 
-	while (format[i] != '\0')
+	while (format[i] != '\0' && _strlen(format) > 0)
 	{
 		if (format[i] != '%')
 		{
@@ -64,10 +64,12 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					write(i, &format[i], 1);
+					j++;
 					break;
 				default:
 					write(1, &format[i - 1], 1);
-					j++;
+					write(1, &format[i], 1);
+					j += 2;
 					break;
 			}
 		}
