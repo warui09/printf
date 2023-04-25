@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 /**
  *_printf - produce output according to format
@@ -54,7 +55,7 @@ int _printf(const char *format, ...)
 					break;
 				case 'd':
 				case 'i':
-					itoa(va_arg(ap, int), c, 10);
+					sprintf(c, "%d", va_arg(ap, int));
 					write(1, c, _strlen(c));
 					break;
 				default:
