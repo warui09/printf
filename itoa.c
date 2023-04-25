@@ -11,9 +11,17 @@
 
 char *itoa(int num, char *str, int base)
 {
-	int i, j;
+	int i, j, is_negative;
 	
 	i = 0;
+	is_negative = 0;
+	
+	if (num < 0 && base == 10)
+	{
+		is_negative = 1;
+		num = -num;
+	}
+
 	if (num == 0)
 	{
 		str[i++] = '0';
@@ -28,10 +36,10 @@ char *itoa(int num, char *str, int base)
 		num = num / base;
 	}
 
-	if (num < 0)
+	if (is_negative)
 		str[i++] = '-';
 
-	rev_str(str);
 	str[i] = '\0';
+	rev_str(str);
 	return (str);
 }
