@@ -55,7 +55,7 @@ int _printf(const char *format, ...)
 				case 'd':
 				case 'i':
 					itoa(va_arg(ap, int), c, 10);
-					write(1, c, sizeof(va_arg(ap, int)));
+					write(1, c, _strlen(c));
 					break;
 				default:
 					write(1, &format[i - 1], 1);

@@ -10,16 +10,16 @@
 void rev_str(char *str)
 {
 	int i, j;
-	char temp;
+	char tmp;
 
 	i = 0;
 	j = _strlen(str) - 1;
 
 	while (i < j)
 	{
-		temp = str[i];
+		tmp = str[i];
 		str[i] = str[j];
-		str[j] = temp;
+		str[j] = tmp;
 		i++;
 		j--;
 	}
