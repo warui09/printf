@@ -6,10 +6,9 @@
 /**
  *_printf - produce output according to format
  *@format: string to print
- *
- *Return: number of characters printed excluding the null
- *        bytes used to end strings
+ *Return: number of characters printed
  */
+
 int _printf(const char *format, ...)
 {
 	va_list ap;
@@ -36,8 +35,15 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					a[0] = (char)va_arg(ap, int);
-					write(1, a, 1);
-					j++;
+					if (*a)
+					{
+						write(1, a, 1);
+						j++;
+					}
+					else
+					{
+						return (-1);
+					}					
 					break;
 				case 's':
 					b = va_arg(ap, char *);
