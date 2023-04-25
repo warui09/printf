@@ -12,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	char a[1], *b;
+	char a[1], *b, c[20];
 	int i, j;
 
 	i = 0, j = 0;
@@ -51,6 +51,11 @@ int _printf(const char *format, ...)
 				case '%':
 					write(1, &format[i], 1);
 					j++;
+					break;
+				case 'd':
+				case 'i':
+					itoa(va_arg(ap, int), c, 10);
+					write(1, c, sizeof(va_arg(ap, int)));
 					break;
 				default:
 					write(1, &format[i - 1], 1);

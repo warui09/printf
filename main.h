@@ -3,6 +3,7 @@
 
 int _printf(const char *format, ...);
 int _strlen(const char *s);
-int * uitob(unsigned int num);
+char *itoa(int num, char *str, int base);
+void rev_str(char *str);
 
 #endif /* MAIN_H */
