@@ -49,7 +49,7 @@ int _printf(const char *format, ...)
 					j += _strlen(b);
 					break;
 				case '%':
-					write(i, &format[i], 1);
+					write(1, &format[i], 1);
 					j++;
 					break;
 				default:
